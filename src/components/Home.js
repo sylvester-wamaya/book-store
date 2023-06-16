@@ -1,5 +1,6 @@
 import React from 'react'
 import BookCard from './BookCard'
+import AddBook from './AddBook'
 
 function Home() {
     const books = [
@@ -18,6 +19,7 @@ function Home() {
         ))
       }
       </ul>
+      <AddBook/>
     </div>
   )
 }
