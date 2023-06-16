@@ -5,13 +5,17 @@ function BookCard({title, author, category}) {
    
         
             <li>
-            <h3>{category}</h3>
-            <span>{title}</span>
+            <p>{category}</p>
+            <br/>
+            <span><b>{title}</b></span>
+            <br/>
             <span>{author}</span>
+            <br/>
+            <div>
             <button>Comments</button>
             <button>Remove</button>
             <button>Edit</button>
-            
+            </div>
             </li>
 
   )
