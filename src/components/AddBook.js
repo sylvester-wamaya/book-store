@@ -12,8 +12,8 @@ function AddBook() {
     <>
       <h2>ADD NEW BOOK</h2>
       <form>
-        <input onChange={(e) => setTitle(e.target.value)} name="title" type="text" placeholder="Book Title" />
-        <input onChange={(e) => setAuthor(e.target.value)} name="author" type="text" placeholder="Book Author" />
+        <input onChange={(e) => setTitle(e.target.value)} name="title" type="text" placeholder="Book Title" required />
+        <input onChange={(e) => setAuthor(e.target.value)} name="author" type="text" placeholder="Book Author" required />
         <button
           onClick={(e) => {
             e.preventDefault();
