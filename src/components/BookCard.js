@@ -1,12 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { removeBook } from '../redux/books/booksSlice';
 
-function BookCard({ title, author, category }) {
+function BookCard({ id, title, author, category }) {
   BookCard.propTypes = {
     title: PropTypes.string.isRequired,
     author: PropTypes.string.isRequired,
     category: PropTypes.string.isRequired,
   };
+
+  const dispatch = useDispatch()
   return (
 
     <li>
@@ -18,7 +22,7 @@ function BookCard({ title, author, category }) {
       <br />
       <div>
         <button type="button">Comments</button>
-        <button type="button">Remove</button>
+        <button onClick={()=>dispatch(removeBook(id))} type="button">Remove</button>
         <button type="button">Edit</button>
       </div>
     </li>
