@@ -12,6 +12,7 @@ function BookCard({
     category: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
   };
+
   const dispatch = useDispatch();
   return (
 
