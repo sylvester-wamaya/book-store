@@ -1,20 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  books: [
-    {
-      id: 'wwdd', title: 'The secret', author: 'Rhonda Byrne', category: 'Self-help',
-    },
-    {
-      id: 'dfff', title: 'Into the Wild', author: 'Jon Krakauer', category: 'Adventure',
-    },
-    {
-      id: 'dfdfd', title: 'Treasure Island', author: 'Robert Louis Stevenson', category: 'Action',
-    },
-    {
-      id: 'ddsss', title: 'American Gods', author: 'Neil Gaiman', category: 'Fantasy',
-    },
-  ],
+  books: [],
 };
 
 const booksSlice = createSlice({
