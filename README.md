@@ -47,7 +47,9 @@ Book Store application is an application that allows a user to do view a list of
 
 3- Javascript
 
-4- react
+4- React
+
+5- Redux
 
 ### Tech Stack <a name="tech-stack"></a>
 
@@ -113,7 +115,7 @@ Install this project with:
 Run this command:
 
 ```sh
-  cd math-magician
+  cd book-store
   npm install
   npm run build
 ```
