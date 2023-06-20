@@ -1,22 +1,10 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import BookCard from './BookCard';
 import AddBook from './AddBook';
 
 function Home() {
-  const books = [
-    {
-      id: 1, title: 'The secret', author: 'Rhonda Byrne', category: 'Self-help',
-    },
-    {
-      id: 2, title: 'Into the Wild', author: 'Jon Krakauer', category: 'Adventure',
-    },
-    {
-      id: 3, title: 'Treasure Island', author: 'Robert Louis Stevenson', category: 'Action',
-    },
-    {
-      id: 4, title: 'American Gods', author: 'Neil Gaiman', category: 'Fantasy',
-    },
-  ];
+  const { books } = useSelector((store) => store.books);
   return (
     <div>
       <h1>Home</h1>
