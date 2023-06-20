@@ -12,11 +12,11 @@ function Home() {
         {
         books.map((book) => (
           <BookCard
-            id={book.id}
+            id={book.item_id}
             title={book.title}
             author={book.author}
             category={book.category}
-            key={book.id}
+            key={book.item_id}
           />
         ))
       }

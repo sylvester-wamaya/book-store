@@ -18,7 +18,7 @@ function AddBook() {
           onClick={(e) => {
             e.preventDefault();
             dispatch(addBook({
-              id: uuidv4(), title, author, category: 'Category',
+              item_id: uuidv4(), title, author, category: 'Category',
             }));
           }}
           type="submit"
