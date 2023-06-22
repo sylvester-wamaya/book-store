@@ -1,4 +1,10 @@
-import { createSlice } from '@reduxjs/toolkit';
+/* eslint-disable */
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
+
+const url = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/YVdtPQNs7lL0XYgfnx02/books'
+
+
 
 const initialState = {
   books: [
@@ -22,6 +28,16 @@ const initialState = {
     },
   ],
 };
+
+export const getBooks = createAsyncThunk('books/getBooks', async()=>{
+  try{
+    const jsonData = await axios.get(url)
+    const books = await jsonData.json()
+    return books.data
+  }catch(error){
+    return error.message
+  }
+})
 
 const booksSlice = createSlice({
   name: 'books',
