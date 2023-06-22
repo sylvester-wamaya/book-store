@@ -46,6 +46,19 @@ export const addBooks = createAsyncThunk('books/addBooks', async({book}, id = uu
   }
 })
 
+export const deleteBook = createAsyncThunk('books/deleteBook', async({item_id})=>{
+  try{
+    
+    const response = await axios.delete(`${url}/${item_id}`)
+    console.log(response)
+   
+      return item_id
+   
+   
+  }catch(error){
+    throw new Error('Failed to delete the book');
+  }
+})
 
 const booksSlice = createSlice({
   name: 'books',
@@ -76,6 +89,9 @@ const booksSlice = createSlice({
 })
 .addCase(addBooks.rejected, (state, action)=>{
   state.error = action.error.message
+})
+.addCase(deleteBook.fulfilled, (state, action)=>{
+  state.books = state.books.filter((book)=>book.item_id !== action.payload)
 })
   }
 });
