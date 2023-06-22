@@ -69,12 +69,14 @@ Book Store application is an application that allows a user to do view a list of
 
 ### Key Features <a name="key-features"></a>
 
-- Added react project set up.
-- Added linters set up.
+
 - Added Home page.
 - Added Categories page.
 - Added Navigation bar.
 - Added add book form.
+- Add a book
+- View a list of books.
+- Delete a book.
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
