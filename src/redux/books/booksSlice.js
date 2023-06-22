@@ -40,6 +40,17 @@ export const getBooks = createAsyncThunk('books/getBooks', async()=>{
   }
 })
 
+export const addBooks = createAsyncThunk('books/addBooks', async({book})=>{
+  try{
+
+    const response = await axios.post(url, book)
+    console.log(response.data)
+    return book
+  }catch(error){
+    return error.message
+  }
+})
+
 const booksSlice = createSlice({
   name: 'books',
   initialState,
@@ -64,6 +75,12 @@ const booksSlice = createSlice({
   .addCase(getBooks.rejected, (state, action)=>{
       state.error = action.error.message
       state.isLoading = false
+})
+.addCase(addBooks.fulfilled, (state, action)=>{
+  state.books.push(action.payload)
+})
+.addCase(addBooks.rejected, (state, action)=>{
+  state.error = action.error.message
 })
   }
 });
