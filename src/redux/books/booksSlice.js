@@ -46,13 +46,13 @@ export const addBooks = createAsyncThunk('books/addBooks', async({book}, id = uu
   }
 })
 
-export const deleteBook = createAsyncThunk('books/deleteBook', async({item_id})=>{
+export const deleteBook = createAsyncThunk('books/deleteBook', async(id)=>{
   try{
     
-    const response = await axios.delete(`${url}/${item_id}`)
+    const response = await axios.delete(`https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/ymcL5d2VVeGiOkxhZZHp/books/${id}`)
     console.log(response)
    
-      return item_id
+      return id
    
    
   }catch(error){
@@ -63,12 +63,7 @@ export const deleteBook = createAsyncThunk('books/deleteBook', async({item_id})=
 const booksSlice = createSlice({
   name: 'books',
   initialState,
-  reducers: {
-  
-    removeBook: (state, action) => {
-      state.books = state.books.filter((book) => book.item_id !== action.payload);
-    },
-  },
+
   extraReducers(builder){
     builder
     .addCase(getBooks.pending, (state)=>{
@@ -77,7 +72,7 @@ const booksSlice = createSlice({
     .addCase(getBooks.fulfilled, (state, action)=>{
       state.books = action.payload
       state.isLoading = false
-      console.log(state.books)
+     
   })
   .addCase(getBooks.rejected, (state, action)=>{
       state.error = action.error.message
@@ -91,8 +86,11 @@ const booksSlice = createSlice({
   state.error = action.error.message
 })
 .addCase(deleteBook.fulfilled, (state, action)=>{
+  console.log(action.payload)
+
   state.books = state.books.filter((book)=>book.item_id !== action.payload)
-})
+
+  })
   }
 });
 export const { addBook, removeBook } = booksSlice.actions;

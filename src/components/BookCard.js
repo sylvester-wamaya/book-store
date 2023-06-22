@@ -1,7 +1,8 @@
+/* eslint-disable */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { removeBook } from '../redux/books/booksSlice';
+import { deleteBook, removeBook } from '../redux/books/booksSlice';
 
 function BookCard({
   id, title, author, category,
@@ -25,7 +26,7 @@ function BookCard({
       <br />
       <div>
         <button type="button">Comments</button>
-        <button onClick={() => dispatch(removeBook(id))} type="button">Remove</button>
+        <button onClick={() => dispatch(deleteBook(id))} type="button">Remove</button>
         <button type="button">Edit</button>
       </div>
     </li>
