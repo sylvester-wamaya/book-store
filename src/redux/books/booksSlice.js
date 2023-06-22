@@ -7,15 +7,33 @@ const url = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstor
 
 
 const initialState = {
-  books: [],
+  books: [
+    {
+      item_id: 'item1',
+      title: 'The Great Gatsby',
+      author: 'John Smith',
+      category: 'Fiction',
+    },
+    {
+      item_id: 'item2',
+      title: 'Anna Karenina',
+      author: 'Leo Tolstoy',
+      category: 'Fiction',
+    },
+    {
+      item_id: 'item3',
+      title: 'The Selfish Gene',
+      author: 'Richard Dawkins',
+      category: 'Nonfiction',
+    },
+  ],
   isLoading: false,
   error: null
 };
 
 export const getBooks = createAsyncThunk('books/getBooks', async()=>{
   try{
-    const jsonData = await axios.get(url)
-    const books = await jsonData.json()
+    const books = await axios.get(url)
     return books.data
   }catch(error){
     return error.message
@@ -39,9 +57,9 @@ const booksSlice = createSlice({
         state.isLoading = true
     })
     .addCase(getBooks.fulfilled, (state, action)=>{
-      state.books = action.payload
+      state.books = [...state.books, action.payload]
       state.isLoading = false
-      console.log(action)
+      console.log(state.books)
   })
   .addCase(getBooks.rejected, (state, action)=>{
       state.error = action.error.message
