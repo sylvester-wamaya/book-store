@@ -1,31 +1,14 @@
 /* eslint-disable */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { v4 as uuidv4 } from 'uuid';
 
-const url = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/YVdtPQNs7lL0XYgfnx02/books'
+const url = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/ymcL5d2VVeGiOkxhZZHp/books'
 
 
 
 const initialState = {
   books: [
-    {
-      item_id: 'item1',
-      title: 'The Great Gatsby',
-      author: 'John Smith',
-      category: 'Fiction',
-    },
-    {
-      item_id: 'item2',
-      title: 'Anna Karenina',
-      author: 'Leo Tolstoy',
-      category: 'Fiction',
-    },
-    {
-      item_id: 'item3',
-      title: 'The Selfish Gene',
-      author: 'Richard Dawkins',
-      category: 'Nonfiction',
-    },
   ],
   isLoading: false,
   error: null
@@ -33,19 +16,29 @@ const initialState = {
 
 export const getBooks = createAsyncThunk('books/getBooks', async()=>{
   try{
-    const books = await axios.get(url)
-    return books.data
+    const response = await axios.get(url)
+    const booksArray = Object.entries(response.data).flatMap(
+      ([item_id, books]) => books.map(
+        ({ title, author, category }) => ({
+          title, author, category, item_id,
+        }),
+      ),
+    );
+    return booksArray;
   }catch(error){
     return error.message
   }
 })
 
-export const addBooks = createAsyncThunk('books/addBooks', async({book})=>{
+export const addBooks = createAsyncThunk('books/addBooks', async({book}, id = uuidv4())=>{
   try{
-
-    const response = await axios.post(url, book)
-    console.log(response.data)
-    return book
+    const newBook = {
+      item_id: id.requestId,
+      ...book,
+    }
+    console.log(newBook)
+    const response = await axios.post(url, newBook)
+    return newBook
   }catch(error){
     return error.message
   }
@@ -55,9 +48,7 @@ const booksSlice = createSlice({
   name: 'books',
   initialState,
   reducers: {
-    addBook: (state, { payload }) => {
-      state.books = [...state.books, payload];
-    },
+  
     removeBook: (state, action) => {
       state.books = state.books.filter((book) => book.item_id !== action.payload);
     },
@@ -68,7 +59,7 @@ const booksSlice = createSlice({
         state.isLoading = true
     })
     .addCase(getBooks.fulfilled, (state, action)=>{
-      state.books = [...state.books, action.payload]
+      state.books = action.payload
       state.isLoading = false
       console.log(state.books)
   })
@@ -78,6 +69,7 @@ const booksSlice = createSlice({
 })
 .addCase(addBooks.fulfilled, (state, action)=>{
   state.books.push(action.payload)
+  console.log(action)
 })
 .addCase(addBooks.rejected, (state, action)=>{
   state.error = action.error.message

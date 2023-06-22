@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import { useSelector } from 'react-redux';
 import BookCard from './BookCard';
@@ -10,7 +11,7 @@ function Home() {
       <h1>Home</h1>
       <ul>
         {
-        books.map((book) => (
+        books && books.map((book) => (
           <BookCard
             id={book.item_id}
             title={book.title}
