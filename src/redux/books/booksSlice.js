@@ -7,26 +7,9 @@ const url = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstor
 
 
 const initialState = {
-  books: [
-    {
-      item_id: 'item1',
-      title: 'The Great Gatsby',
-      author: 'John Smith',
-      category: 'Fiction',
-    },
-    {
-      item_id: 'item2',
-      title: 'Anna Karenina',
-      author: 'Leo Tolstoy',
-      category: 'Fiction',
-    },
-    {
-      item_id: 'item3',
-      title: 'The Selfish Gene',
-      author: 'Richard Dawkins',
-      category: 'Nonfiction',
-    },
-  ],
+  books: [],
+  isLoading: false,
+  error: null
 };
 
 export const getBooks = createAsyncThunk('books/getBooks', async()=>{
@@ -50,6 +33,21 @@ const booksSlice = createSlice({
       state.books = state.books.filter((book) => book.item_id !== action.payload);
     },
   },
+  extraReducers(builder){
+    builder
+    .addCase(getBooks.pending, (state)=>{
+        state.isLoading = true
+    })
+    .addCase(getBooks.fulfilled, (state, action)=>{
+      state.books = action.payload
+      state.isLoading = false
+      console.log(action)
+  })
+  .addCase(getBooks.rejected, (state, action)=>{
+      state.error = action.error.message
+      state.isLoading = false
+})
+  }
 });
 export const { addBook, removeBook } = booksSlice.actions;
 export default booksSlice.reducer;
