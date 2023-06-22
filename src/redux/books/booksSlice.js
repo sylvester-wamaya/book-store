@@ -36,13 +36,16 @@ export const addBooks = createAsyncThunk('books/addBooks', async({book}, id = uu
       item_id: id.requestId,
       ...book,
     }
-    console.log(newBook)
     const response = await axios.post(url, newBook)
-    return newBook
+    if(response.data ==='Created'){
+      return newBook
+    }
+    throw new Error('Failed to create a new book');
   }catch(error){
-    return error.message
+    throw new Error('Failed to create a new book');
   }
 })
+
 
 const booksSlice = createSlice({
   name: 'books',
@@ -69,7 +72,7 @@ const booksSlice = createSlice({
 })
 .addCase(addBooks.fulfilled, (state, action)=>{
   state.books.push(action.payload)
-  console.log(action)
+ 
 })
 .addCase(addBooks.rejected, (state, action)=>{
   state.error = action.error.message
