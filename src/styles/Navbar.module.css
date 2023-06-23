@@ -31,4 +31,7 @@ nav{
     padding: 0.875rem 1rem;
     border-radius: 50%;
   }
-
+  
+.active{
+  opacity: 1;
+}
