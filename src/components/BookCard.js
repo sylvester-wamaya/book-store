@@ -30,7 +30,7 @@ function BookCard({
       </div>
       </div>
       <div>
-        <div className={styles.progress}></div>
+        <div className={styles.progress}>ggfddd</div>
       </div>
       <div>
         <p>Current Chapter</p>
