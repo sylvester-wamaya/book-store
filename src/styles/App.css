@@ -10,3 +10,14 @@ ul{
 a{
   text-decoration: none;
 }
+.author, .bookBtns{
+  font-family: 'Roboto Slab', serif;
+  font-size: 0.875rem;
+  font-weight: 300;
+  color: #4386bf;
+}
+.bookBtns{
+  background: none;
+  border: none;
+  margin:0.938rem 0.125rem 0;
+}

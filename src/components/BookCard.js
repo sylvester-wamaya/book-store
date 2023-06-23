@@ -22,15 +22,18 @@ function BookCard({
       <div className={styles.book }>
       <p className={styles.category}>{category}</p>
       <p className={styles.title}>{title}</p>
-      <p className={styles.author}>{author}</p>
+      <p className={`${styles.author} author`}>{author}</p>
       <div className={styles.bookBtns}>
-        <button type="button">Comments</button>
-        <button onClick={() => dispatch(deleteBook(id))} type="button">Remove</button>
-        <button type="button">Edit</button>
+        <button className='bookBtns' type="button">Comments</button>
+        <button className='bookBtns' onClick={() => dispatch(deleteBook(id))} type="button">Remove</button>
+        <button className='bookBtns' type="button">Edit</button>
       </div>
       </div>
       <div>
-        <div className={styles.progress}>ggfddd</div>
+        <div>
+        <div className={styles.progress}></div>
+        <span>50%</span>
+        </div>
       </div>
       <div>
         <p>Current Chapter</p>
