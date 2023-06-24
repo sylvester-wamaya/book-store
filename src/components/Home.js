@@ -7,7 +7,6 @@ function Home() {
   const { books } = useSelector((store) => store.books);
   return (
     <div>
-      <h1>Home</h1>
       <ul>
         {
         books && books.map((book) => (

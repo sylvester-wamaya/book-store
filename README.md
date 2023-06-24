@@ -4,7 +4,7 @@
 
 <div align="center">
 
-<img src="./public/logo tr.png" alt="logo" width="140"  height="auto" />
+<img src="public/logo.jpg" style='border-radius:50%' alt="logo" width="140"  height="auto" />
 
 <h3><b>Book Store Application</b></h3>
 
