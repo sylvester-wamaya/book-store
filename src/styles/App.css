@@ -1,0 +1,32 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.author,
+.bookBtns {
+  font-family: 'Roboto Slab', serif;
+  font-size: 0.875rem;
+  font-weight: 300;
+  color: #4386bf;
+}
+
+.bookBtns {
+  background: none;
+  border: none;
+  margin: 0.188rem 0.938rem 0.125rem 0;
+}
+
+li span {
+  color: #e8e8e8;
+  margin: 0.188rem 0.938rem 0.125rem 0;
+}
